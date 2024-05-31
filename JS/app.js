@@ -13,7 +13,6 @@ resultadoJugador.appendChild(screenly);
 let aleatorio = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
-let pc = aleatorio(1, 3);
 btnReload.addEventListener("click", () => {
   location.reload();
 });
@@ -40,6 +39,7 @@ btnPapel.addEventListener("click", () => {
 });
 //eleccionEnemigo
 let eleccion = () => {
+  let pc = aleatorio(1, 3);
   if (pc == 1) {
     screenlyEnemy.innerHTML += `pc: piedra <br>`;
   } else if (pc == 2) {
@@ -51,6 +51,7 @@ let eleccion = () => {
 
 //combate
 let combate = (resultado) => {
+  let pc = aleatorio(1, 3);
   if (pc === jugador) {
     resultado = " Empate";
   } else if (
@@ -76,5 +77,9 @@ let verificacion = () => {
     btnPapel.disabled = true;
     btnPiedra.disabled = true;
     btnTijera.disabled = true;
+    let mensajeFinal = document.createElement("p");
+    mensajeFinal.classList.add("mensaje");
+    mensajeFinal.innerHTML = `ganaste ${triunfos} y perdiste ${perdidas}`;
+    document.body.querySelector(".screen").append(mensajeFinal);
   }
 };
